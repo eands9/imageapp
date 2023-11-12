@@ -1,4 +1,4 @@
-type Item @model {
+type ImageApp @model {
   id: String
   email: String
   gender: String

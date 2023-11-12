@@ -33,7 +33,7 @@
   "entities": {
     "ToDoList": {
       "source": {
-        "object": "Items"
+        "object": "imageapps"
       },
       "graphql": {
         "enabled": true,
