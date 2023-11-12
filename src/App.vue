@@ -1,5 +1,16 @@
 <template>
-  <div></div>
+  <VApp>
+    <v-app-bar
+      color="primary"
+      density="compact"
+    >
+
+    </v-app-bar>
+    <!-- SIDEBAR -->
+    <VMain>
+      <!-- CARDS -->
+    </VMain>
+  </VApp>
 </template>
 
 <script>
