@@ -31,15 +31,15 @@
     }
   },
   "entities": {
-    "ToDoList": {
+    "ImageApp": {
       "source": {
         "object": "imageapps"
       },
       "graphql": {
         "enabled": true,
         "type": {
-          "singular": "ToDoList",
-          "plural": "ToDoLists"
+          "singular": "ImageApp",
+          "plural": "ImageApps"
         }
       },
       "rest": {
