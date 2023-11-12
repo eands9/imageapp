@@ -1,0 +1,5 @@
+type Item @model {
+  id: String
+  email: String
+  gender: String
+}
