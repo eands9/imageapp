@@ -21,11 +21,10 @@ export default {
 
       const query = `
       {
-          Items {
+        imageapps {
           items{
-            id,
             email,
-            gender,
+            gender
           },
         endCursor,
         hasNextPage
@@ -39,7 +38,7 @@ export default {
         body: JSON.stringify({ query: query }),
       });
       const result = await response.json();
-      console.table(result.data.Items.items);
+      console.table(result.data.imageapps.items);
     },
   },
 };
