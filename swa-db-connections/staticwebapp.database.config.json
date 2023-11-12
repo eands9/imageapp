@@ -4,7 +4,7 @@
     "database-type": "cosmosdb_nosql",
     "connection-string": "AccountEndpoint=https://imageapp-cosmosdb.documents.azure.com:443/;AccountKey=gB3QUk2mwZIr4D7O6EO4nFhAJnBmUpTr6BVqTAVSIRuh2KW8c8JNHnUIn3DThUXy4KR5tfJya3umACDbPvEABQ==;",
     "options": {
-      "database": "ToDoList",
+      "database": "Image",
       "container": null,
       "schema": "staticwebapp.database.schema.gql"
     }
@@ -31,15 +31,15 @@
     }
   },
   "entities": {
-    "ImageApp": {
+    "Imageapp": {
       "source": {
         "object": "imageapps"
       },
       "graphql": {
         "enabled": true,
         "type": {
-          "singular": "ImageApp",
-          "plural": "ImageApps"
+          "singular": "Imageapp",
+          "plural": "Imageapps"
         }
       },
       "rest": {

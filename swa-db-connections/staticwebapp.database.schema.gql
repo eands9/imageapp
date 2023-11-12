@@ -1,4 +1,4 @@
-type ImageApp @model {
+type Imageapp @model {
   id: String
   email: String
   gender: String
