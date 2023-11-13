@@ -7,6 +7,7 @@ const initialState = {
   gender: "",
   email: "",
   id: "",
+  showProgress: false,
 };
 
 const state = reactive({
@@ -18,6 +19,8 @@ const rules = {
   email: { required, email },
 };
 
+// const showProgress = ref(true)
+
 const v$ = useVuelidate(rules, state);
 
 function clear() {
@@ -27,7 +30,8 @@ function clear() {
     state[key] = value;
   }
 }
-async function submitForm() {
+function submitForm() {
+    state.showProgress=true
   v$.value.$validate();
   if (!v$.value.$error) {
     console.log("There's data...");
@@ -35,47 +39,50 @@ async function submitForm() {
     console.log("There's no data...");
     state.gender = "m";
   }
+  getData()
 
-  //   const id = state.id
-  //   const query = `
-  //       {
-  //         imageapp_by_pk(id: "1001") {
-  //             id,
-  //             email,
-  //             gender
-  //         }
-  //       }`;
+}
+async function getData(){
+    const id = state.gender;
 
-  const id = "1001";
+    const gql = `
+    query getById($id: ID!) {
+      imageapp_by_pk(id: $id) {
+        id,
+        email,
+        gender
+      }
+    }`;
 
-  const gql = `
-  query getById($id: ID!) {
-    imageapp_by_pk(id: $id) {
-      id,
-      email,
-      gender
-    }
-  }`;
+    const query = {
+      query: gql,
+      variables: {
+        id: id,
+      },
+    };
 
-  const query = {
-    query: gql,
-    variables: {
-      id: id,
-    },
-  };
+    const endpoint = "/data-api/graphql";
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(query),
+    });
+    const result = await response.json();
+    console.table(result.data.imageapp_by_pk);
+    state.showProgress = false;
 
-  const endpoint = "/data-api/graphql";
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(query),
-  });
-  const result = await response.json();
-  console.table(result.data.imageapp_by_pk);
 }
 </script>
-
 <template>
+  <v-overlay v-model="state.showProgress" class="justify-center align-center">
+    <v-progress-circular
+      indeterminate
+      size="60"
+      width="5"
+      color="primary"
+    ></v-progress-circular>
+  </v-overlay>
+
   <v-sheet width="300" class="mx-auto mt-15">
     <form>
       <v-text-field
