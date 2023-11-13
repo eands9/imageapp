@@ -62,10 +62,10 @@ async function getData(){
     // };
 
     const email = state.email;
-    console.log(email)
+
     const gql = `
     query getById($id: ID!) {
-      imageapp_by_pk(email: $email) {
+      imageapp_by_pk(id: $id) {
         id,
         email,
         gender
