@@ -65,7 +65,7 @@ async function getData(){
 
     const gql = `
     query getByEmail($id: ID!) {
-      imageapp_by_pk(id: "1001") {
+      imageapp_by_pk(id: $id) {
         id,
         email,
         gender
