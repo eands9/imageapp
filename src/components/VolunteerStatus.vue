@@ -26,13 +26,32 @@ function clear() {
     state[key] = value;
   }
 }
-function submitForm() {
+async function submitForm() {
   v$.value.$validate();
   if(!v$.value.$error){
     console.log("There's data...")
   } else {
     console.log("There's no data...")
+    state.gender = 'm'
   }
+
+  const query = `
+      {
+        imageapp_by_pk(id: "1001") {
+            id,
+            email,
+            gender
+        }
+      }`;
+
+      const endpoint = "/data-api/graphql";
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: query }),
+      });
+      const result = await response.json();
+      console.table(result.data.updates.items);
   
 }
 </script>
@@ -45,6 +64,7 @@ function submitForm() {
         :error-messages="v$.gender.$errors.map((e) => e.$message)"
         :counter="10"
         label="Gender"
+        variant="outlined"
         required
         @input="v$.gender.$touch"
         @blur="v$.gender.$touch"
@@ -54,6 +74,7 @@ function submitForm() {
         v-model="state.email"
         :error-messages="v$.email.$errors.map((e) => e.$message)"
         label="E-mail"
+        variant="outlined"
         required
         @input="v$.email.$touch"
         @blur="v$.email.$touch"
@@ -61,6 +82,8 @@ function submitForm() {
 
       <v-btn class="me-4" @click="submitForm"> submit </v-btn>
       <v-btn @click="clear"> clear </v-btn>
+
+      <v-textarea class="mt-15" label="Label" variant="outlined"></v-textarea>
     </form>
   </v-sheet>
 </template>
