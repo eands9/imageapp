@@ -6,6 +6,7 @@ import { email, required } from "@vuelidate/validators";
 const initialState = {
   gender: "",
   email: "",
+  id: "",
 };
 
 const state = reactive({
@@ -28,31 +29,48 @@ function clear() {
 }
 async function submitForm() {
   v$.value.$validate();
-  if(!v$.value.$error){
-    console.log("There's data...")
+  if (!v$.value.$error) {
+    console.log("There's data...");
   } else {
-    console.log("There's no data...")
-    state.gender = 'm'
+    console.log("There's no data...");
+    state.gender = "m";
   }
 
-  const query = `
-      {
-        imageapp_by_pk(id: "1001") {
-            id,
-            email,
-            gender
-        }
-      }`;
+  //   const id = state.id
+  //   const query = `
+  //       {
+  //         imageapp_by_pk(id: "1001") {
+  //             id,
+  //             email,
+  //             gender
+  //         }
+  //       }`;
 
-      const endpoint = "/data-api/graphql";
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: query }),
-      });
-      const result = await response.json();
-      console.table(result.data.imageapp_by_pk);
-  
+  const id = "1001";
+
+  const gql = `
+  query getById($id: ID!) {
+    imageapp_by_pk(id: $id) {
+      id,
+      email,
+      gender
+    }
+  }`;
+
+  const query = {
+    query: gql,
+    variables: {
+      id: id,
+    },
+  };
+  const endpoint = "/data-api/graphql";
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: query }),
+  });
+  const result = await response.json();
+  console.table(result.data.imageapp_by_pk);
 }
 </script>
 
