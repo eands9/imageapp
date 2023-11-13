@@ -53,6 +53,14 @@ async function getData(){
     //     gender
     //   }
     // }`;
+
+    // const query = {
+    //   query: gql,
+    //   variables: {
+    //     id: id,
+    //   },
+    // };
+
     const email = state.email;
 
     const gql = `
@@ -66,7 +74,7 @@ async function getData(){
     const query = {
       query: gql,
       variables: {
-        id: id,
+        email: email,
       },
     };
 
