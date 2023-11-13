@@ -63,11 +63,12 @@ async function submitForm() {
       id: id,
     },
   };
+
   const endpoint = "/data-api/graphql";
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: query }),
+    body: JSON.stringify(query),
   });
   const result = await response.json();
   console.table(result.data.imageapp_by_pk);
