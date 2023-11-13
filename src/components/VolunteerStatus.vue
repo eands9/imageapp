@@ -51,7 +51,7 @@ async function submitForm() {
         body: JSON.stringify({ query: query }),
       });
       const result = await response.json();
-      console.table(result.data.updates.items);
+      console.table(result.data.imageapps.items);
   
 }
 </script>
