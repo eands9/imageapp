@@ -35,24 +35,34 @@ function submitForm() {
   v$.value.$validate();
   if (!v$.value.$error) {
     console.log("There's data...");
+    getData()
   } else {
     console.log("There's no data...");
   }
-  getData()
+
 
 }
 async function getData(){
-    const id = state.gender;
+    // const id = state.gender;
+
+    // const gql = `
+    // query getById($id: ID!) {
+    //   imageapp_by_pk(id: $id) {
+    //     id,
+    //     email,
+    //     gender
+    //   }
+    // }`;
+    const email = state.email;
 
     const gql = `
-    query getById($id: ID!) {
-      imageapp_by_pk(id: $id) {
+    query getById($email: EMAIL!) {
+      imageapp_by_pk(email: $email) {
         id,
         email,
         gender
       }
     }`;
-
     const query = {
       query: gql,
       variables: {
