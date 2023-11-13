@@ -43,7 +43,7 @@ function submitForm() {
 
 }
 async function getData(){
-    // const id = state.gender;
+    const id = state.gender;
 
     // const gql = `
     // query getById($id: ID!) {
@@ -61,7 +61,7 @@ async function getData(){
     //   },
     // };
 
-    const email = state.email;
+    // const email = state.email;
 
     const gql = `
     query getById($id: ID!) {
@@ -74,7 +74,7 @@ async function getData(){
     const query = {
       query: gql,
       variables: {
-        email: email,
+        id: id,
       },
     };
 
