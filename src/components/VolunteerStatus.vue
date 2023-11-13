@@ -28,12 +28,12 @@ function clear() {
 }
 async function submitForm() {
   v$.value.$validate();
-//   if(!v$.value.$error){
-//     console.log("There's data...")
-//   } else {
-//     console.log("There's no data...")
-//     state.gender = 'm'
-//   }
+  if(!v$.value.$error){
+    console.log("There's data...")
+  } else {
+    console.log("There's no data...")
+    state.gender = 'm'
+  }
 
   const query = `
       {
@@ -51,7 +51,7 @@ async function submitForm() {
         body: JSON.stringify({ query: query }),
       });
       const result = await response.json();
-      console.table(result.data.imageapps.items);
+      console.table(result.data.imageapp_by_pk);
   
 }
 </script>
@@ -83,7 +83,7 @@ async function submitForm() {
       <v-btn class="me-4 mt-5" @click="submitForm"> submit </v-btn>
       <v-btn class="mt-5" @click="clear"> clear </v-btn>
 
-      <v-textarea class="mt-15" label="Label" variant="outlined"></v-textarea>
+      <v-textarea class="mt-15" v-show="false" variant="outlined"></v-textarea>
     </form>
   </v-sheet>
 </template>
