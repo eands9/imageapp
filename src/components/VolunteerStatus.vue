@@ -28,12 +28,12 @@ function clear() {
 }
 async function submitForm() {
   v$.value.$validate();
-  if(!v$.value.$error){
-    console.log("There's data...")
-  } else {
-    console.log("There's no data...")
-    state.gender = 'm'
-  }
+//   if(!v$.value.$error){
+//     console.log("There's data...")
+//   } else {
+//     console.log("There's no data...")
+//     state.gender = 'm'
+//   }
 
   const query = `
       {
@@ -80,8 +80,8 @@ async function submitForm() {
         @blur="v$.email.$touch"
       ></v-text-field>
 
-      <v-btn class="me-4" @click="submitForm"> submit </v-btn>
-      <v-btn @click="clear"> clear </v-btn>
+      <v-btn class="me-4 mt-5" @click="submitForm"> submit </v-btn>
+      <v-btn class="mt-5" @click="clear"> clear </v-btn>
 
       <v-textarea class="mt-15" label="Label" variant="outlined"></v-textarea>
     </form>
