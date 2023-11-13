@@ -64,7 +64,7 @@ async function getData(){
     // const email = state.email;
 
     const gql = `
-    query {
+    query getByEmail($id: ID!) {
       imageapp_by_pk(id: $id) {
         id,
         email,
@@ -75,6 +75,7 @@ async function getData(){
       query: gql,
       variables: {
         id: id,
+        // email: email,
       },
     };
 
