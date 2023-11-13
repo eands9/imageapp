@@ -64,8 +64,8 @@ async function getData(){
     const email = state.email;
 
     const gql = `
-    query getById($email: EMAIL!) {
-      imageapp_by_pk(email: $email) {
+    query getById($id: ID!) {
+      imageapp_by_pk(id: $id) {
         id,
         email,
         gender
@@ -85,7 +85,8 @@ async function getData(){
       body: JSON.stringify(query),
     });
     const result = await response.json();
-    console.table(result.data.imageapp_by_pk);
+    // console.table(result.data.imageapp_by_pk);
+    console.log(result.data.imageapp_by_pk.gender);
     state.showProgress = false;
 
 }
