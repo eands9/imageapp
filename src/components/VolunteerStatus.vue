@@ -37,7 +37,6 @@ function submitForm() {
     console.log("There's data...");
   } else {
     console.log("There's no data...");
-    state.gender = "m";
   }
   getData()
 
