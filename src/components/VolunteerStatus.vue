@@ -85,8 +85,8 @@ async function getData(){
       body: JSON.stringify(query),
     });
     const result = await response.json();
-    // console.table(result.data.imageapp_by_pk);
-    console.log(result.data.imageapp_by_pk.gender);
+    console.table(result.data.imageapp_by_pk);
+    // console.log(result.data.imageapp_by_pk.gender);
     state.showProgress = false;
 
 }
