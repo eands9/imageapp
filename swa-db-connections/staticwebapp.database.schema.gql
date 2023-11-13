@@ -1,5 +1,5 @@
 type Imageapp @model {
-  id: String
-  email: String
+  email: ID
   gender: String
+  id: String
 }
